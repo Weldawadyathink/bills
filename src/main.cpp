@@ -1,5 +1,6 @@
 #include <iostream>
 #include "month.h"
+#include <sqlite3.h>
 
 using namespace std;
 using namespace spenser;
