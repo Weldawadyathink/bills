@@ -5,8 +5,10 @@ TARGET_EXEC ?= bills
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./src
 
+LDFLAGS = -lpthread -ldl
+
+CC = gcc
 CXX = g++
-CC = g++
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
@@ -15,10 +17,13 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++11
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
+
+run: $(TARGET_EXEC)
+	./bills
 
 $(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
 # assembly
 $(BUILD_DIR)/%.s.o: %.s
@@ -28,23 +33,20 @@ $(BUILD_DIR)/%.s.o: %.s
 # c source
 $(BUILD_DIR)/%.c.o: %.c
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 # c++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-	
-run: $(TARGET_EXEC)
-	./bills
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -c $< -o $@
 
 
 .PHONY: clean
 
 clean:
 	$(RM) -r $(BUILD_DIR)
-	$(RM) $(TARGET_EXEC)
 
 -include $(DEPS)
 
 MKDIR_P ?= mkdir -p
+
