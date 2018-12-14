@@ -26,8 +26,45 @@ namespace spenser
     {
         for(int i = 0; i < bills.size(); i++)
         {
-            cout << i << ": " << bills[i].getName() << "-" << bills[i].getPrettyAmount() << " " << (bills[i].getPaid() ? "Paid" : "*Not Paid*") << endl;
+            cout << i << ": " << bills[i].getName() << " " << bills[i].getPrettyAmount() << " " << (bills[i].getPaid() ? "Paid" : "*Not Paid*") << endl;
         }
+    }
+    
+    // Interactive monthly bills program
+    int month::runMonth(string prompttext)
+    {
+        while (true){
+            cout << prompttext << month::promptsplit << monthName << month::promptend;
+            string temp;
+            cin >> temp;
+            
+            if (temp == "exit")
+            {
+                cout << "Exiting..." << endl;
+                return 0;
+            }
+            
+            else if (temp == "ls")
+            {
+                listBills();
+            }
+            
+            else if (temp == "add")
+            {
+                addBill();
+            }
+            
+            else if (temp == "help")
+            {
+                cout << "Help is not yet implemented. Good luck!" << endl;
+            }
+            
+            else 
+            {
+                cout << "No valid command recognized. Use \"help\" for more info." << endl;
+            }
+        }
+        
     }
     
     // interactively add a new bill

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "month.h"
+#include "bills.h"
 
 using namespace std;
 using namespace spenser;
@@ -8,6 +8,6 @@ int main()
 {
     std::cout << "Hello World" << std::endl;
     
-    month myMonth;
-    myMonth.addBill();
+    bills myBills;
+    myBills.runBills();
 }
