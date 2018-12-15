@@ -35,7 +35,7 @@ namespace spenser
     int month::runMonth(string prompttext, string defaultSubDirectory)
     {
         while (true){
-            cout << prompttext << month::promptsplit << monthName << month::promptend;
+            cout << prompttext << month::promptsplit << monthName << month::promptend << " ";
             string temp;
             cin >> temp;
             
@@ -55,6 +55,10 @@ namespace spenser
             else if (temp == "help")
             {
                 cout << "Help is not yet implemented. Good luck!" << endl;
+            }
+            else if (temp == "default")
+            {
+                changeDefaultSaveFile();
             }
             else 
             {
