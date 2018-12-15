@@ -7,6 +7,7 @@ namespace spenser
     bills::bills()
     {
         filename = "bills.txt";
+        subdirectory = "data/";
     }
     
     bills::bills(std::string file)
@@ -18,6 +19,12 @@ namespace spenser
     int bills::runBills()
     {
         month myMonth;
-        myMonth.runMonth("bills");
+        myMonth.runMonth("bills", subdirectory);
+    }
+    
+    // checks if the defaults are OK
+    void bills::checkDefaults()
+    {
+        
     }
 }

@@ -14,10 +14,11 @@ namespace spenser
             int runBills();
             
         private:
-            
+            std::string subdirectory;
             std::string filename;
             std::vector<spenser::month> months;
             int readData();
+            void checkDefaults();
             
     };
 }

@@ -9,9 +9,10 @@ using std::string;
 
 namespace spenser
 {
+    string month::monthFile = "month.default";
+    
     month::month()
     {
-        
     }
     
     // adds bill to end of vector. returns the index of the new bill
@@ -31,7 +32,7 @@ namespace spenser
     }
     
     // Interactive monthly bills program
-    int month::runMonth(string prompttext)
+    int month::runMonth(string prompttext, string defaultSubDirectory)
     {
         while (true){
             cout << prompttext << month::promptsplit << monthName << month::promptend;
@@ -43,22 +44,18 @@ namespace spenser
                 cout << "Exiting..." << endl;
                 return 0;
             }
-            
             else if (temp == "ls")
             {
                 listBills();
             }
-            
             else if (temp == "add")
             {
                 addBill();
             }
-            
             else if (temp == "help")
             {
                 cout << "Help is not yet implemented. Good luck!" << endl;
             }
-            
             else 
             {
                 cout << "No valid command recognized. Use \"help\" for more info." << endl;
@@ -84,5 +81,20 @@ namespace spenser
         cout << endl;
         
         addBill(temp);
+    }
+    
+    // changes the default save file
+    void month::changeDefaultSaveFile()
+    {
+        cout << "Enter a new default save file" << endl;
+        string temp;
+        cout << monthFile << ">";
+        cin >> temp;
+        
+        if (temp != "")
+        {
+            monthFile = temp;
+        }
+        cout << monthFile << endl;
     }
 }
