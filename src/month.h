@@ -17,6 +17,7 @@ namespace spenser
             int runMonth(std::string prompttext, std::string defaultSubDirectory);
             void setName(std::string newName);
             void setDirectory(std::string directory);
+            const static std::string exitFromMonth = "exitFromMonth";
             
         private:
             std::string subdirectory;
