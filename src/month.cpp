@@ -6,6 +6,9 @@ using std::cin;
 using std::endl;
 using std::vector;
 using std::string;
+using std::ofstream;
+using std::ifstream;
+using std::fstream;
 
 namespace spenser
 {
@@ -60,6 +63,10 @@ namespace spenser
             {
                 changeDefaultSaveFile();
             }
+            else if (temp == "save")
+            {
+                save();
+            }
             else 
             {
                 cout << "No valid command recognized. Use \"help\" for more info." << endl;
@@ -100,5 +107,38 @@ namespace spenser
             monthFile = temp;
         }
         cout << monthFile << endl;
+    }
+    
+    // saves current month
+    // returns 0 on success, -1 on file open error
+    int month::save() const
+    {
+        fstream file ("./" + subdirectory + monthName, std::fstream::trunc | std::fstream::out);
+        
+        if (!file.is_open())
+        {
+            cout << "ERROR opening file " << subdirectory << monthName << endl;
+            return -1;
+        }
+        
+        for (int i = 0; i < bills.size(); i++)
+        {
+            if (bills[i].writeToStream(file) != 0)
+            {
+                cout << "ERROR writing bill number " << i << endl;
+            }
+        }
+        
+        cout << bills.size() << " bills written to file" << subdirectory << monthName << endl;
+    }
+    
+    void month::setName(string newName)
+    {
+        monthName = newName;
+    }
+    
+    void month::setDirectory(string directory)
+    {
+        subdirectory = directory;
     }
 }

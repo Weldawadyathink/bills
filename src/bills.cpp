@@ -19,6 +19,8 @@ namespace spenser
     int bills::runBills()
     {
         month myMonth;
+        myMonth.setName("testing");
+        myMonth.setDirectory(subdirectory);
         myMonth.runMonth("bills", subdirectory);
     }
     
