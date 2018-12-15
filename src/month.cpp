@@ -12,8 +12,6 @@ using std::fstream;
 
 namespace spenser
 {
-    string month::monthFile = "month.default";
-    
     month::month()
     {
     }
@@ -59,10 +57,10 @@ namespace spenser
             {
                 cout << "Help is not yet implemented. Good luck!" << endl;
             }
-            else if (temp == "default")
-            {
-                changeDefaultSaveFile();
-            }
+            //else if (temp == "default")
+            //{
+            //    changeDefaultSaveFile();
+            //}
             else if (temp == "save")
             {
                 save();
@@ -95,7 +93,7 @@ namespace spenser
     }
     
     // changes the default save file
-    void month::changeDefaultSaveFile()
+    /*void month::changeDefaultSaveFile()
     {
         cout << "Enter a new default save file" << endl;
         string temp;
@@ -107,7 +105,7 @@ namespace spenser
             monthFile = temp;
         }
         cout << monthFile << endl;
-    }
+    }*/
     
     // saves current month
     // returns 0 on success, -1 on file open error
@@ -129,7 +127,7 @@ namespace spenser
             }
         }
         
-        cout << bills.size() << " bills written to file" << subdirectory << monthName << endl;
+        cout << bills.size() << " bills written to file ./" << subdirectory << monthName << endl;
     }
     
     void month::setName(string newName)

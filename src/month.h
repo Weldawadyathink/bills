@@ -21,8 +21,8 @@ namespace spenser
         private:
             std::string subdirectory;
             std::string monthName; // also save file
-            static std::string monthFile; // save file for defaults
-            void changeDefaultSaveFile();
+            //static std::string monthFile; // save file for defaults
+            //void changeDefaultSaveFile();
             const static char promptsplit = '/';
             const static char promptend = '>';
             std::vector<spenser::bill> bills;
