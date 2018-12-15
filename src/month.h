@@ -11,24 +11,15 @@ namespace spenser
     class month
     {
         public:
-        
-        
             month();
             int listBills();
             int addBill();
-            int runMonth(std::string prompttext, std::string defaultSubDirectory);
+            std::string getName() const;
             void setName(std::string newName);
-            void setDirectory(std::string directory);
+            int addBill(spenser::bill newBill);
             
         private:
-            std::string subdirectory;
-            std::string monthName; // also save file
-            //static std::string monthFile; // save file for defaults
-            //void changeDefaultSaveFile();
-            const static char promptsplit = '/';
-            const static char promptend = '>';
+            std::string monthName;
             std::vector<spenser::bill> bills;
-            int addBill(spenser::bill newBill);
-            int save() const;
     };
 }
